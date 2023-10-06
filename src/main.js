@@ -9,3 +9,4 @@ Vue.use(Maska)
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
