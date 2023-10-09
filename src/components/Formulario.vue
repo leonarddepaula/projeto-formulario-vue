@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-6 bg-light">
-                <span class="fs-4">ENTRADA DE DADOS</span>
+                <span class=" fs-4">ENTRADA DE DADOS</span>
                 <hr>
                 <form>
                     <div class="mb-3 row">
@@ -51,13 +51,8 @@
                         <label class="col-3 col-form-label">Licença:</label>
                         <div class="col">
                             <div class="form-check form-switch">
-                                <input 
-                                    class="form-check-input" 
-                                    type="checkbox" 
-                                    v-model="form.licenca" 
-                                    true-value="SIM"
-                                    false-value="NÃO"
-                                    >
+                                <input class="form-check-input" type="checkbox" v-model="form.licenca" true-value="SIM"
+                                    false-value="NÃO">
                                 <label class="form-check-label">Li e aceito os termos</label>
                             </div>
                         </div>
@@ -67,7 +62,8 @@
                         <label class="col-3 col-form-label">Interesses:</label>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="JavaScript" v-model="form.interesses">
+                                <input class="form-check-input" type="checkbox" value="JavaScript"
+                                    v-model="form.interesses">
                                 <label class="form-check-label">
                                     JavaScript
                                 </label>
@@ -123,62 +119,84 @@
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Cartão de Crédito:</label>
                         <div class="col">
-                            <input type="text" class="form-control" v-model="form.cartaoCredito" v-maska="'#### #### #### ####'">
+                            <input type="text" class="form-control" v-model="form.cartaoCredito"
+                                v-maska="'#### #### #### ####'">
                             <small class="text-muted">Formato: 0000 0000 0000 0000</small>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-3 col-form-label">Placa Veículo:</label>
+                        <div class="col">
+                            <input type="text" class="form-control" v-model="form.placaVeiculo" v-maska="'AAA-####'">
+                            <small class="text-muted">Formato: AAA-0000</small>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-3 col-form-label">Placa Veículo Mercosul:</label>
+                        <div class="col">
+                            <input type="text" class="form-control" v-model="form.placaVeiculoMercosul" v-maska="'AAA#A##'">
+                            <small class="text-muted">Formato: AAA0A00</small>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-3 col-form-label">RG:</label>
+                        <div class="col">
+                            <input type="text" class="form-control" v-model="form.rg" v-maska="'#*-X'">
+                            <small class="text-muted">Formato: Sem padrão</small>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Data:</label>
                         <div class="col">
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" v-model="form.data">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Data/hora local:</label>
                         <div class="col">
-                            <input type="datetime-local" class="form-control">
+                            <input type="datetime-local" class="form-control" v-model="form.dataHoraLocal">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Mês:</label>
                         <div class="col">
-                            <input type="month" class="form-control">
+                            <input type="month" class="form-control" v-model="form.mes">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Semana:</label>
                         <div class="col">
-                            <input type="week" class="form-control">
+                            <input type="week" class="form-control" v-model="form.semana">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Hora:</label>
                         <div class="col">
-                            <input type="time" class="form-control">
+                            <input type="time" class="form-control" v-model="form.hora">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Cor:</label>
                         <div class="col">
-                            <input type="color" class="form-color">
+                            <input type="color" class="form-color" v-model="form.cor">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Valor limite:</label>
                         <div class="col">
-                            <input type="range" class="form-range" min="0" max="100" step="1">
+                            <input type="range" class="form-range" min="0" max="100" step="1" v-model="form.alcance">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Escondido:</label>
                         <div class="col">
-                            <input type="hidden" class="form-control">
+                            <input type="hidden" class="form-control" v-model="form.escondido">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Upload:</label>
                         <div class="col">
-                            <input type="file" class="form-control">
+                            <input type="file" class="form-control" multiple @change="selecionarArquivos($event)">
                         </div>
                     </div>
                     <hr>
@@ -194,7 +212,7 @@
             </div>
 
 
-            <div class="col-6 text-white bg-secondary">
+            <div class="col-6 text-white bg-secondary" :style="'background-color:' + form.cor + '!important'">
                 <span class="fs-4">ESTADO DO OBJETO</span>
                 <hr>
                 <div class="mb-5 row">
@@ -218,17 +236,18 @@
                     <span>Idade: {{ form.idade }}</span>
                 </div>
                 <div class="mb-3 row">
-                    <span>Gênero:   {{ form.genero }}</span>
-                 
+                    <span>Gênero: {{ form.genero }}</span>
+
                 </div>
                 <div class="mb-3 row">
                     <span>Licença: {{ form.licenca }}</span>
                 </div>
                 <div class="mb-3 row">
                     <span>Interesses:
-                    <ul>
-                        <li v-for="(interesse, index) in form.interesses" :key="index">{{ interesse }}</li>
-                    </ul></span>
+                        <ul>
+                            <li v-for="(interesse, index) in form.interesses" :key="index">{{ interesse }}</li>
+                        </ul>
+                    </span>
                 </div>
                 <div class="mb-3 row">
                     <span>Telefone: {{ form.telefone }}</span>
@@ -246,31 +265,55 @@
                     <span>Cartão de crédito: {{ form.cartaoCredito }}</span>
                 </div>
                 <div class="mb-3 row">
-                    <span>Data:</span>
+                    <span>Placa Veículo: {{ form.placaVeiculo }}</span>
                 </div>
                 <div class="mb-3 row">
-                    <span>Data/hora local:</span>
+                    <span>Placa veículo Mercosul: {{ form.placaVeiculoMercosul }}</span>
                 </div>
                 <div class="mb-3 row">
-                    <span>Mês:</span>
+                    <span>RG: {{ form.rg }}</span>
                 </div>
                 <div class="mb-3 row">
-                    <span>Semana:</span>
+                    <span>Data: {{ $moment(form.data).format('DD/MM/YYYY') }}</span>
                 </div>
                 <div class="mb-3 row">
-                    <span>Hora:</span>
+                    <span>Data/hora local: {{ $moment(form.dataHoraLocal).format('LLLL') }}</span>
+                    <ul>
+                        <li>{{ $moment(form.dataHoraLocal).format('dddd') }}</li>
+                        <li>{{ $moment(form.dataHoraLocal).add(10, 'days').format('LL') }}</li>
+                        <li>{{ $moment(form.dataHoraLocal).add(1, 'months').format('LL') }}</li>
+                        <li>{{ $moment(form.dataHoraLocal).add(2, 'years').format('LL') }}</li>
+                        <!-- subtraindo dias -->
+                        <li>{{ $moment(form.dataHoraLocal).subtract(10, 'days').format('LL') }}</li>
+                        <li>{{ $moment(form.dataHoraLocal).subtract(1, 'months').format('LL') }}</li>
+                        <li>{{ $moment(form.dataHoraLocal).subtract(2, 'years').format('LL') }}</li>
+                        <!-- formato de data completa -->
+                        <li>{{ $moment(form.dataHoraLocal).format('LLLL') }}</li>
+                    </ul>
                 </div>
                 <div class="mb-3 row">
-                    <span>Cor:</span>
+                    <span>Mês: {{ $moment(form.mes).format(' MMMM YYYY') }}</span>
                 </div>
                 <div class="mb-3 row">
-                    <span>Valor limite:</span>
+                    <span>Semana: {{ $moment(form.semana).format('LL') }}</span>
                 </div>
                 <div class="mb-3 row">
-                    <span>Escondido:</span>
+                    <span>Hora: {{ form.hora }}</span>
+                </div>
+                <div class="mb-3 row">
+                    <span>Cor: {{ form.cor }}</span>
+                </div>
+                <div class="mb-3 row">
+                    <span>Valor limite: {{ form.alcance }}</span>
+                </div>
+                <div class="mb-3 row">
+                    <span>Escondido: {{ form.escondido }}</span>
                 </div>
                 <div class="mb-3 row">
                     <span>Upload:</span>
+                    <ul>
+                        <li v-for="(arquivo, index) in form.arquivos" :key="index"> {{ arquivo.name }}</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -283,6 +326,7 @@ export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Formulario',
     data: () => ({
+        moment: {},
         form: {
             nome: '',
             email: '',
@@ -295,9 +339,28 @@ export default {
             cep: '',
             cpf: '',
             cnpj: '',
-            cartaoCredito: ''
+            cartaoCredito: '',
+            placaVeiculo: '',
+            placaVeiculoMercosul: '',
+            rg: '',
+            data: '',
+            dataHoraLocal: '',
+            mes: '',
+            semana: '',
+            hora: '',
+            cor: '',
+            alcance: 5,
+            escondido: 'ESSE INPUT ESTÁ ESCONDIDO',
+            arquivos: {},
         },
 
     }),
+    methods: {
+        selecionarArquivos(event) {
+            console.log(event.target.files);
+            this.form.arquivos = event.target.files
+        }
+    }
+
 }
 </script>
