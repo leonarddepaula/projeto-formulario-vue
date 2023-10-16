@@ -4,7 +4,8 @@
             <div class="col-6 bg-light">
                 <span class=" fs-4">ENTRADA DE DADOS</span>
                 <hr>
-                <form>
+                <!-- <form @submit.prevent="enviar($event)" action=""> -->
+                    <form>
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Nome:</label>
                         <div class="col">
@@ -199,11 +200,32 @@
                             <input type="file" class="form-control" multiple @change="selecionarArquivos($event)">
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        <label class="col-3 col-form-label">Descrição:</label>
+                        <div class="col">
+                            <textarea class="form-control" rows="3" v-model="form.descricao"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-3 col-form-label">Cursos:</label>
+                        <div class="col">
+                            <select class="form-select" v-model="form.curso">
+                                <option value="" disabled>--Selecione uma opção</option>
+                                <option 
+                                    v-for="curso in cursos"
+                                    :key="curso.id" 
+                                    :value="curso.id"
+                                    >
+                                    {{ curso.id }} - {{ curso.curso }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                     <hr>
                     <div class="mb-3 row">
                         <div class="col d-flex justify-content-between">
                             <button class="btn btn-secondary" type="reset">Limpar</button>
-                            <button class="btn btn-success" type="button">Enviar (btn)</button>
+                            <button class="btn btn-success" type="button" @click="enviar($event)">Enviar (btn)</button>
                             <button class="btn btn-success" type="submit">Enviar (submit)</button>
                         </div>
                     </div>
@@ -315,6 +337,13 @@
                         <li v-for="(arquivo, index) in form.arquivos" :key="index"> {{ arquivo.name }}</li>
                     </ul>
                 </div>
+                <div class="mb-3 row">
+                    <span>Descrição: </span>
+                    <div style="white-space: pre">{{ form.descricao }}</div>
+                </div>
+                <div class="mb-3 row">
+                    <span>Curso: {{ form.curso }}</span>
+                </div>
             </div>
         </div>
 
@@ -327,6 +356,12 @@ export default {
     name: 'Formulario',
     data: () => ({
         moment: {},
+        cursos: [
+            { id: 1, curso: 'Banco de Dados Relacionais' },
+            { id: 2, curso: 'Desenvolvimento Web Avançado com Vue' },
+            { id: 3, curso: 'Desenvolvimento Web Avançado com Laravel' },
+            { id: 4, curso: 'Curso completo do desenvolvedor NodeJS e MongoDB' },
+        ],
         form: {
             nome: '',
             email: '',
@@ -348,18 +383,30 @@ export default {
             mes: '',
             semana: '',
             hora: '',
-            cor: '',
+            cor: '#6c757d',
             alcance: 5,
             escondido: 'ESSE INPUT ESTÁ ESCONDIDO',
             arquivos: {},
+            descricao: '',
+            curso: '',
         },
 
     }),
     methods: {
         selecionarArquivos(event) {
-            console.log(event.target.files);
+            // console.log(event.target.files);
             this.form.arquivos = event.target.files
-        }
+        },
+        enviar(e) {
+            console.log(e);
+            console.log(this.form);
+
+            const formEnvio = Object.assign({}, this.form)
+            console.log(formEnvio);
+
+            // uma requisição htttp para o back-end da aplicação
+            // a pormise que vai nos permitir tomar açoes se a requisição deu certo  ou errado
+        },
     }
 
 }
