@@ -5,7 +5,7 @@
                 <span class=" fs-4">ENTRADA DE DADOS</span>
                 <hr>
                 <!-- <form @submit.prevent="enviar($event)" action=""> -->
-                    <form>
+                    <form @reset.prevent="resetar()">
                     <div class="mb-3 row">
                         <label class="col-3 col-form-label">Nome:</label>
                         <div class="col">
@@ -362,10 +362,11 @@ export default {
             { id: 3, curso: 'Desenvolvimento Web Avançado com Laravel' },
             { id: 4, curso: 'Curso completo do desenvolvedor NodeJS e MongoDB' },
         ],
-        form: {
-            nome: '',
-            email: '',
-            senha: '',
+        form: {},
+        formEstadoInicial: {
+            nome: 'Leo De Paula',
+            email: 'leo@email.com',
+            senha: '123mudar',
             idade: '',
             licenca: 'NÃO',
             interesses: [],
@@ -392,6 +393,9 @@ export default {
         },
 
     }),
+    created() {
+        this.resetar()
+    },
     methods: {
         selecionarArquivos(event) {
             // console.log(event.target.files);
@@ -407,6 +411,9 @@ export default {
             // uma requisição htttp para o back-end da aplicação
             // a pormise que vai nos permitir tomar açoes se a requisição deu certo  ou errado
         },
+        resetar() {
+            this.form = Object.assign({}, this.formEstadoInicial)
+        }
     }
 
 }
